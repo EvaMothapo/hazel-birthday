@@ -1,0 +1,81 @@
+body{
+    text-align: center;
+    background: linear-gradient(to right, #ffdde1, #ee9ca7);
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+h1{
+font-size: 48px;
+}
+img{
+    width:300px;
+    border-radius:10px;
+    margin: 10px;
+    transition: 0.3s ease;
+}
+img:hover{
+    transform: scale(1.05);
+}
+video{
+    margin-top: 20px;
+    border-radius: 10px;
+}
+.gallery{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:15px
+}
+.final-section{
+    margin-top: 40px;
+}
+.final-section img{
+    width:350px;
+    border-radius: 15px;
+    margin-top:40px;
+}
+.final-section p{
+    font-size: 18px;
+    margin-top: 15px;
+    line-height: 1.5;
+}
+.balloons{
+font-size: 40px;
+margin-top: 10px;
+animation:float 3s ease-in-out infinite;
+}
+@keyframes float{
+    0%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform: translateY(-20px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
+.confetti{
+    position: fixed;
+    top:-50px;
+    font-size: 25px;
+    animation: fall 5s linear infinite;
+}
+.confetti:nth-child(1) {left:10%; animation-delay:0s;}
+.confetti:nth-child(2) {left:30%; animation-delay:1s;}
+.confetti:nth-child(3) {left:50%; animation-delay:2s;}
+.confetti:nth-child(4) {left:70%; animation-delay:3s;}
+.confetti:nth-child(5) {left:90%; animation-delay:4s;}
+
+@keyframes fall{
+0%{
+    transform: translateY(0);
+    opacity:1;
+}
+100%{
+    transform: translateY(100vh);
+    opacity:0
+}
+}
