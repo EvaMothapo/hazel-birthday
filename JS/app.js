@@ -1,16 +1,16 @@
 window.addEventListener("load", () => {
-    let lockScreen = document.getElementById("lockScreen");
-    let swipeBar = document.getElementById("swipeBar");
+  let lockScreen = document.getElementById("lockScreen");
+  let swipeBar = document.getElementById("swipeBar");
 
-    swipeBar.addEventListener("click", ()=>{
-        lockScrren.classList.add("unlock");
+  function unlockScreen() {
+    lockScreen.style.transition = "1s ease";
+    lockScreen.style.transform = "translateY(-100%)";
+    lockScreen.style.opacity = "0";
+    setTimeout(() => {
+      lockScreen.style.display = "none";
+    }, 1000);
+  }
 
-        setTimeout(()=>{
-            lockScreen.style.display="none";
-        }, 1000);
-    });
-
-    
   let text =
     "Happy Birthday Bestie!! ❤️ I hope your day is as gorgeous as you are, I love you loads!";
   let typeIndex = 0;
@@ -19,7 +19,6 @@ window.addEventListener("load", () => {
   let finalSection = document.querySelector(".final-section");
 
   function typeEffect() {
-    
     if (!typingEl) return;
 
     if (typeIndex < text.length) {
@@ -28,18 +27,18 @@ window.addEventListener("load", () => {
       setTimeout(typeEffect, 70);
     } else {
       let button = document.getElementById("revealBtn");
-      if (button){
-        button.style.display= "inline-block";
-        
-        button.addEventListener("click", ()=>{
-            let finalMessage=document.createElement("h2");
-            finalMessage.id= "final-msg";
-            finalMessage.innerHTML= "You Mean The World To Me ♥️";
+      if (button) {
+        button.style.display = "inline-block";
 
-            finalSection.appendChild(finalMessage);
+        button.addEventListener("click", () => {
+          let finalMessage = document.createElement("h2");
+          finalMessage.id = "final-msg";
+          finalMessage.innerHTML = "You Mean The World To Me ♥️";
 
-            button.remove();
-        })
+          finalSection.appendChild(finalMessage);
+
+          button.remove();
+        });
       }
     }
   }
