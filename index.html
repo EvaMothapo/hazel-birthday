@@ -8,11 +8,17 @@
     
 </head>
 <body>
+    <div id="topBar" class="cinema-bar"></div>
+    <div id="bottomBar" class="cinema-bar"></div>
+    <div id="cinematicOverlay"></div>
+    <div id="intro">
+        <h1>A message for Hazel...</h1>
+    </div>
     <div id="lockScreen">
         <div class="lock-content">
             <h1>🔒 Locked</h1>
-            <p>Swipe or Tap to Open  🎁</p>
-            <div id="swipeBar">→ swipe / Tap →</div>
+            <p> Tap to Open  🎁</p>
+            <div id="swipeBar">→ Tap →</div>
         </div>
     </div>
     <div class="container">
@@ -30,6 +36,9 @@
     <div class="slideshow">
         <img id="slideImage" src="images/photo-1.jpeg" alt="slideshow image">
     </div>
+    <div id="photoMessage" class="photo-message">
+        My favourite smile
+    </div>
     <div class="video-container">
 <video controls>
     <source src="video/birthday-video.mp4" type="video/mp4">
@@ -46,6 +55,10 @@
     </p>
     <button id="revealBtn">Open your Suprise✨</button>
 </div>
+<audio id="bgMusic" loop>
+    <source src="music/Justin Bieber - DAISIES (Audio) - JustinBieberVEVO.mp3" type="audio/mp3">
+</audio>
+<button id="musicToggle"> Music</button>
     <script src="JS/app.js"></script>
 </div>
 </body>

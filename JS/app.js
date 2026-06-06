@@ -2,21 +2,94 @@ window.addEventListener("load", () => {
   let lockScreen = document.getElementById("lockScreen");
   let swipeBar = document.getElementById("swipeBar");
 
+  let music = document.getElementById("bgMusic");
+  let toggleBtn = document.getElementById("musicToggle");
+  let isPlaying = false;
+
+  let typingEl = document.querySelector(".typing");
+  let finalSection = document.querySelector(".final-section");
+
+  let slideIndex = 0;
+  let slide = document.getElementById("slideImage");
+  let photoMessage = document.getElementById("photoMessage");
+
+  let images = [
+    "images/photo-1.jpeg",
+    "images/photo-2.jpeg",
+    "images/photo-3.jpeg",
+    "images/photo-4.jpeg",
+    "images/photo-5.jpeg",
+    "images/photo-6.jpeg",
+    "images/photo-7.jpeg",
+    "images/photo-8.jpeg",
+  ];
+  let messages = [
+    "My pretty girl🦋",
+    "My favourite smile ❤️",
+    "You looked beautiful here💓",
+    "One of my favourite memories📷",
+    "You make every moment special👓",
+    "I love you baby girl♥️",
+    "Forever my favourite person💘💝",
+    "Happy Birthday Linea De vida✨🎂 ",
+  ];
+
+  let topBar = document.getElementById("topBar");
+  let bottomBar = document.getElementById("bottomBar");
+
+  setTimeout(() => {
+    topBar.style.opacity = "0";
+    bottomBar.style.opacity = "0";
+
+    setTimeout(() => {
+      topBar.style.display = "none";
+      bottomBar.style.display = "none";
+    }, 1000);
+  }, 4000);
+
+  toggleBtn.addEventListener("click", () => {
+    if (isPlaying) {
+      music.pause();
+      toggleBtn.innerText = "🔇 Music";
+    } else {
+      music.play();
+      toggleBtn.innerText = "🔊 Music";
+    }
+    isPlaying = !isPlaying;
+  });
+
+  swipeBar.addEventListener("click", unlockScreen);
+
+  function fadeInMusic(audio) {
+    audio.volume = 0;
+    audio.play();
+
+    let vol = 0;
+    let fade = setInterval(() => {
+      if (vol < 0.3) {
+        vol += 0.02;
+        audio.volume = vol;
+      } else {
+        clearInterval(fade);
+      }
+    }, 80);
+  }
   function unlockScreen() {
-    lockScreen.style.transition = "1s ease";
-    lockScreen.style.transform = "translateY(-100%)";
+    fadeInMusic(music);
+
+    lockScreen.style.transition = "1.3s ease";
+    lockScreen.style.transform = "scale(1.08)";
     lockScreen.style.opacity = "0";
+
     setTimeout(() => {
       lockScreen.style.display = "none";
-    }, 1000);
+      lockScreen.style.pointerEvents = "none";
+    }, 1300);
   }
 
   let text =
     "Happy Birthday Bestie!! ❤️ I hope your day is as gorgeous as you are, I love you loads!";
   let typeIndex = 0;
-
-  let typingEl = document.querySelector(".typing");
-  let finalSection = document.querySelector(".final-section");
 
   function typeEffect() {
     if (!typingEl) return;
@@ -35,7 +108,16 @@ window.addEventListener("load", () => {
           finalMessage.id = "final-msg";
           finalMessage.innerHTML = "You Mean The World To Me ♥️";
 
+          finalMessage.style.opacity = "0";
+          finalMessage.style.transform = "scale(0.8)";
+          finalMessage.style.transition = "all 1s ease";
+
           finalSection.appendChild(finalMessage);
+
+          setTimeout(() => {
+            finalMessage.style.opacity = "1";
+            finalMessage.style.transform = "scale(1)";
+          }, 100);
 
           button.remove();
         });
@@ -69,36 +151,26 @@ window.addEventListener("load", () => {
   setInterval(createConfetti, 300);
 
   // SLIDESHOW
-  let images = [
-    "images/photo-1.jpeg",
-    "images/photo-2.jpeg",
-    "images/photo-3.jpeg",
-    "images/photo-4.jpeg",
-    "images/photo-5.jpeg",
-    "images/photo-6.jpeg",
-    "images/photo-7.jpeg",
-    "images/photo-8.jpeg",
-  ];
 
-  let slideIndex = 0;
-  let slide = document.getElementById("slideImage");
+  function changeSlide() {
+    slide.style.transition = "opacity 1s ease, transform 1s ease";
+    slide.style.opacity = 0;
+    slide.style.transform = "scale(1.05)";
 
-  if (slide) {
-    function changeSlide() {
+    setTimeout(() => {
       slideIndex++;
 
       if (slideIndex >= images.length) {
         slideIndex = 0;
       }
 
-      slide.style.opacity = 0;
+      slide.src = images[slideIndex];
+      photoMessage.innerText = messages[slideIndex];
 
-      setTimeout(() => {
-        slide.src = images[slideIndex];
-        slide.style.opacity = 1;
-      }, 300);
-    }
-
-    setInterval(changeSlide, 2000);
+      slide.style.opacity = 1;
+      slide.style.transform = "scale(1)";
+    }, 600);
   }
+
+  setInterval(changeSlide, 3000);
 });
