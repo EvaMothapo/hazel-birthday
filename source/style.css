@@ -296,17 +296,6 @@ video {
 .lock-content {
   text-align: center;
 }
-.cinema-bar{
-    position:fixed;
-    left:0;
-   width: 100%;
-   height: 60px;
-   background: black;
-   z-index:9998; 
-   transition: opacity 1s ease;
-}
-#topBar{top:0; }
-#bottomBar{bottom: 0; }
 
 #cinematicOverlay{
     position: fixed;
@@ -318,4 +307,8 @@ video {
     z-index:9997;
     pointer-events: none;
 }
-
+#ageReveal{
+    display:none;
+    font-size: 30px;
+    margin-top: 20px;
+}
